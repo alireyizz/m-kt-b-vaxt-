@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f6f0">
+  <title>Məktəb Vaxtı — Tədris Təqvimi və Geri Sayım</title>
+  <meta name="description" content="Azərbaycan məktəbliləri üçün tədris təqvimi, tətillər, geri sayım və interaktiv məktəb oyunu.">
+  <meta property="og:title" content="Məktəb Vaxtı">
+  <meta property="og:description" content="Azərbaycan məktəbliləri üçün tədris təqvimi, tətillər, geri sayım və interaktiv məktəb oyunu.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Ambient background glow -->
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <a class="brand" href="#home" data-tab-link="home" aria-label="Məktəb Vaxtı">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span data-i18n="brand">Məktəb Vaxtı</span>
+      </a>
+      <div class="header-actions">
+        <button id="gameBtn" class="game-btn" type="button" aria-haspopup="dialog">
+          <span aria-hidden="true">🎮</span>
+          <span data-game-label>Oyun</span>
+        </button>
+        <div class="langs" role="group" aria-label="Dil seçimi">
+          <button data-lang="az" class="active" type="button">AZ</button>
+          <button data-lang="en" type="button">EN</button>
+          <button data-lang="ru" type="button">RU</button>
+        </div>
+        <button id="themeBtn" class="icon-btn" type="button" aria-label="Temanı dəyiş" title="Temanı dəyiş">◐</button>
+      </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="tabs-nav-wrapper" aria-label="Əsas menyu">
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" id="tabNavHome" data-tab="home" data-i18n="tabHome" aria-selected="true" aria-controls="tab-home">Ana</button>
+        <button class="tab" role="tab" id="tabNavCalendar" data-tab="calendar" data-i18n="tabCalendar" aria-selected="false" aria-controls="tab-calendar">Təqvim</button>
+        <button class="tab" role="tab" id="tabNavHolidays" data-tab="holidays" data-i18n="tabHolidays" aria-selected="false" aria-controls="tab-holidays">Tətillər</button>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- TAB 1: ANA (HOME) -->
+      <section class="tab-panel active" id="tab-home" role="tabpanel" aria-labelledby="tabNavHome">
+        <div class="home-container">
+          <!-- Intro Date & Live Clock -->
+          <article class="surface intro">
+            <div class="intro-date">
+              <p class="eyebrow" id="todayLabel">BU GÜN</p>
+              <h1 id="dateTitle">--</h1>
+            </div>
+            <div class="clock" aria-live="off">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span id="clock">--:--:--</span>
+            </div>
+          </article>
+
+          <!-- 2-Column Responsive Home Grid -->
+          <div class="home-grid">
+            <!-- Main Column: Hero Countdown & Academic Progress -->
+            <div class="home-col-main">
+              <!-- Hero Countdown Card -->
+              <article class="surface main-card">
+                <div class="status-badge">
+                  <span class="status-dot" aria-hidden="true"></span>
+                  <span id="statusText">2026–2027 tədris ili davam edir.</span>
+                </div>
+                <h2 class="countdown-label" id="schoolLabel">Məktəbin bağlanmasına qalan vaxt</h2>
+
+                <!-- 4 Tabular Metric Boxes for Perfect Legibility -->
+                <div class="countdown-grid" aria-label="Geri sayım">
+                  <div class="countdown-box">
+                    <span class="countdown-num" id="cdDays">--</span>
+                    <span class="countdown-unit" data-i18n="days">gün</span>
+                  </div>
+                  <div class="countdown-box">
+                    <span class="countdown-num" id="cdHours">--</span>
+                    <span class="countdown-unit" data-i18n="hours">saat</span>
+                  </div>
+                  <div class="countdown-box">
+                    <span class="countdown-num" id="cdMinutes">--</span>
+                    <span class="countdown-unit" data-i18n="minutes">dəq</span>
+                  </div>
+                  <div class="countdown-box">
+                    <span class="countdown-num" id="cdSeconds">--</span>
+                    <span class="countdown-unit" data-i18n="seconds">san</span>
+                  </div>
+                </div>
+
+                <!-- Accessible screen reader announcement -->
+                <span id="schoolCountdown" class="sr-only" aria-live="polite">--</span>
+
+                <div class="school-end">
+                  <span id="schoolDate" class="school-end-date">14 iyun 2027</span>
+                  <span class="end-dot" aria-hidden="true"></span>
+                  <span data-i18n="schoolEnd">son dərs günü</span>
+                </div>
+              </article>
+
+              <!-- Academic Progress Card -->
+              <article class="surface progress-card">
+                <div class="progress-head">
+                  <div>
+                    <p class="eyebrow" id="progressEyebrow">TƏDRİS İLİ</p>
+                    <span class="progress-title" id="progressTitle">İl nə qədər keçib?</span>
+                  </div>
+                  <b class="progress-percent" id="progressPercent">0%</b>
+                </div>
+                <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressTrack" aria-labelledby="progressTitle">
+                  <span class="progress-bar-fill" id="progressBar"></span>
+                </div>
+                <div class="progress-meta">
+                  <span id="startText">15 sentyabr 2026</span>
+                  <span id="endText">14 iyun 2027</span>
+                </div>
+              </article>
+            </div>
+
+            <!-- Side Column: Next Holiday, Weekend & Academic Overview -->
+            <div class="home-col-side">
+              <div class="mini-grid">
+                <!-- Next Holiday Card -->
+                <article class="surface mini-card mini-card-holiday">
+                  <div>
+                    <div class="mini-top">
+                      <span class="mini-icon" aria-hidden="true">◷</span>
+                      <span class="mini-label" id="holidayLabel">Növbəti tətil</span>
+                    </div>
+                    <strong id="holidayName">Payız tətili</strong>
+                  </div>
+                  <div class="mini-bottom">
+                    <span class="mini-bottom-date" id="holidayDate">16–20 noyabr 2026</span>
+                    <span class="mini-bottom-countdown" id="holidayCountdown">--</span>
+                  </div>
+                </article>
+
+                <!-- Weekend Card -->
+                <article class="surface mini-card">
+                  <div>
+                    <div class="mini-top">
+                      <span class="mini-icon" aria-hidden="true">○</span>
+                      <span class="mini-label" id="weekendLabel">Həftəsonuna</span>
+                    </div>
+                    <strong id="weekendName">Şənbə</strong>
+                  </div>
+                  <div class="mini-bottom">
+                    <span class="mini-bottom-date" id="weekendDate">3 oktyabr 2026</span>
+                    <span class="mini-bottom-countdown" id="weekendCountdown">--</span>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Quick Academic Facts Card -->
+              <article class="surface facts-card">
+                <h3 class="facts-title" id="factsTitle">Tədris ili icmalı</h3>
+                <div class="facts-list">
+                  <div class="fact-item">
+                    <span class="fact-label" id="factQuarterLabel">Cari dövr</span>
+                    <span class="fact-val" id="factQuarterVal">I yarımil</span>
+                  </div>
+                  <div class="fact-item">
+                    <span class="fact-label" id="factFirstBellLabel">İlk zəng</span>
+                    <span class="fact-val" id="factFirstBellVal">15 sentyabr 2026</span>
+                  </div>
+                  <div class="fact-item">
+                    <span class="fact-label" id="factLastBellLabel">Son zəng</span>
+                    <span class="fact-val" id="factLastBellVal">14 iyun 2027</span>
+                  </div>
+                  <div class="fact-item">
+                    <span class="fact-label" id="factTotalDaysLabel">Tədris günləri</span>
+                    <span class="fact-val" id="factTotalDaysVal">--</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: TƏQVİM (CALENDAR) -->
+      <section class="tab-panel" id="tab-calendar" role="tabpanel" aria-labelledby="tabNavCalendar">
+        <article class="surface page-card">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow" id="calendarEyebrow">TƏQVİM</p>
+              <h2 id="calendarTitle">Tədris təqvimi</h2>
+            </div>
+            <div class="calendar-controls">
+              <button id="todayJumpBtn" class="today-jump-btn" type="button">Bu gün</button>
+              <div class="calendar-nav">
+                <button id="prevMonth" type="button" aria-label="Əvvəlki ay">‹</button>
+                <span id="monthTitle" aria-live="polite"></span>
+                <button id="nextMonth" type="button" aria-label="Növbəti ay">›</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekday Headers -->
+          <div class="weekdays" id="weekdays" aria-hidden="true"></div>
+
+          <!-- 42 Days Calendar Grid -->
+          <div class="calendar" id="calendar"></div>
+
+          <!-- Interactive Day Details Inspector -->
+          <div class="day-inspector" id="dayInspector">
+            <span class="day-inspector-title" id="dayInspectorTitle">Tədris təqvimi</span>
+            <span class="day-inspector-desc" id="dayInspectorDesc">Təqvimdəki istənilən günə klikləyərək ətraflı məlumat əldə edin.</span>
+          </div>
+
+          <!-- Legend -->
+          <div class="legend" aria-label="Təqvim işarələri">
+            <span><i class="school-dot" aria-hidden="true"></i><span id="schoolDayLegend">Tədris günü</span></span>
+            <span><i class="holiday-dot" aria-hidden="true"></i><span id="holidayLegend">Məktəb tətili</span></span>
+            <span><i class="official-dot" aria-hidden="true"></i><span id="officialLegend">Bayram günü</span></span>
+            <span><i class="today-dot" aria-hidden="true"></i><span id="todayLegend">Bu gün</span></span>
+          </div>
+        </article>
+      </section>
+
+      <!-- TAB 3: TƏTİLLƏR (HOLIDAYS) -->
+      <section class="tab-panel" id="tab-holidays" role="tabpanel" aria-labelledby="tabNavHolidays">
+        <article class="surface page-card">
+          <div class="page-head">
+            <div>
+              <p class="eyebrow" id="holidayEyebrow">TƏTİLLƏR</p>
+              <h2 id="holidayPageTitle">2026–2027 tətil günləri</h2>
+            </div>
+          </div>
+
+          <div class="subtabs-wrapper">
+            <div class="subtabs" role="tablist" aria-label="Tətil bölmələri">
+              <button class="subtab active" id="subtabBreaks" data-holiday-tab="breaks" data-i18n="breaksTab" role="tab" aria-selected="true" aria-controls="holiday-panel-breaks">Məktəb tətilləri</button>
+              <button class="subtab" id="subtabHolidays" data-holiday-tab="holidays" data-i18n="daysOffTab" role="tab" aria-selected="false" aria-controls="holiday-panel-holidays">Bayram günləri</button>
+              <button class="subtab" id="subtabAll" data-holiday-tab="all" data-i18n="allTab" role="tab" aria-selected="false" aria-controls="holiday-panel-all">Hamısı</button>
+            </div>
+          </div>
+
+          <div class="holiday-panel active" id="holiday-panel-breaks" role="tabpanel" aria-labelledby="subtabBreaks">
+            <div id="holidayList" class="holiday-list"></div>
+          </div>
+          <div class="holiday-panel" id="holiday-panel-holidays" role="tabpanel" aria-labelledby="subtabHolidays">
+            <div id="officialList" class="holiday-list"></div>
+          </div>
+          <div class="holiday-panel" id="holiday-panel-all" role="tabpanel" aria-labelledby="subtabAll">
+            <div id="allHolidayList" class="holiday-list"></div>
+          </div>
+
+          <p class="holiday-note" id="holidayNote">
+            Qeyd: 1–5 may əlavə yaz tətili yalnız ibtidai siniflər üçün nəzərdə tutulur.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <!-- Mini-Game Modal: Məktəbdən Qaçış -->
+    <div id="gameModal" class="game-modal" aria-hidden="true">
+      <div class="game-shell" role="dialog" aria-modal="true" aria-labelledby="gameTitle">
+        <div class="game-top">
+          <div>
+            <div class="game-title" id="gameTitle">Məktəbdən Qaçış</div>
+            <div class="game-score-bar">
+              <span id="gameScoreLabel">Xal</span>: <b id="gameScore">0</b> · 
+              <span id="gameBestLabel">Rekord</span>: <b id="gameBest">0</b>
+            </div>
+          </div>
+          <button id="gameClose" class="game-close" type="button" aria-label="Oyunu bağla">×</button>
+        </div>
+
+        <div class="game-stage">
+          <canvas id="gameCanvas" aria-label="Məktəb temalı kağız təyyarə oyunu"></canvas>
+          <div id="gameOverlay" class="game-overlay">
+            <div class="game-over-card">
+              <h3 id="gameOverTitle">Təyyarə yerə endi!</h3>
+              <p><span id="gameFinalLabel">Xal</span>: <b id="gameFinalScore">0</b></p>
+              <button id="gameRestart" class="game-restart" type="button">Yenidən oyna</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="gameHelp" class="game-help">Space / klik / toxunma ilə kağız təyyarəni uçur.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <span>© <span id="footerYear">2026</span> <span data-i18n="brand">Məktəb Vaxtı</span></span>
+      <span id="footerInfo">GitHub Pages · Azərbaycan məktəbliləri üçün</span>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Məktəb Vaxtı",
+  "description": "Azərbaycan məktəbliləri üçün tədris təqvimi, tətillər, geri sayım və interaktiv məktəb oyunu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
